@@ -20,22 +20,22 @@ from telegram.ext import Updater, MessageHandler, Filters
 def demo1(bot,update):
   chat_id = bot.message.chat_id
   bot.message.reply_text('turning on light')
-  aio.send('light',1)
+  aio.send('bedroom-lights',1)
   
 def demo2(bot,update):
   chat_id = bot.message.chat_id
   bot.message.reply_text('turning off light')
-  aio.send('light',0)
+  aio.send('bedroom-lights',0)
 
 def demo3(bot,update):
   chat_id = bot.message.chat_id
   bot.message.reply_text('turning on fan')
-  aio.send('fan',1)
+  aio.send('fans',1)
 
 def demo4(bot,update):
   chat_id = bot.message.chat_id
   bot.message.reply_text('turning off fan')
-  aio.send('fan',0)
+  aio.send('fans',0)
 
 def main(bot,update):
   a= bot.message.text.lower()
@@ -48,11 +48,10 @@ def main(bot,update):
   elif a =="turn off fan":
     demo4(bot,update)
 
+
 bot_token = f'{token1}:{token2}'
 u = Updater(bot_token,use_context=True)
 dp = u.dispatcher
 dp.add_handler(MessageHandler(Filters.text,main))
 u.start_polling()
-u.idle() 
-
-      
+u.idle()
